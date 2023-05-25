@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yt_shorts/pages/home_page.dart';
+import 'package:yt_shorts/pages/page_preview.dart';
 import 'package:yt_shorts/pages/short_page.dart';
 // import 'package:yt_shorts/pages/temp.dart';
 
@@ -23,10 +25,13 @@ class MyApp extends StatelessWidget {
         
       ),
       routes: {
-        ShortPage.id:(context) => ShortPage(),
+        // ShortPage.id:(context) => ShortPage(),
+        // PagePreview.id:(context) => PagePreview(),
+        HomePage.id:(context) => HomePage(),
         // Temp.id:(context) => Temp(mediaUrl:  "https://cdn.gro.care/ec12312256ad_1683524903074.mp4",),
       },
-      initialRoute: ShortPage.id ,
+      initialRoute: HomePage.id,
+      // initialRoute: PagePreview.id,
       // initialRoute: ShortPage.id,
     );
   }

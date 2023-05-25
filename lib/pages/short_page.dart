@@ -9,14 +9,19 @@ import 'package:yt_shorts/services/services.dart';
 
 class ShortPage extends ConsumerWidget {
   static String id = 'shortpage';
-  const ShortPage({super.key});
+  const ShortPage(this.offset, this.pageNum, {super.key});
+  final int offset;
+  final String pageNum;
 
   @override
   Widget build(BuildContext context, ref) {
+    PageController _controllerPage = PageController(
+      initialPage: offset,
+    );
     VideoPlayerController _controller;
     Future<void> _initializeVideoPlayerFuture;
 
-    final counter = ref.watch(shortsDataProvider('1'));
+    final counter = ref.watch(shortsDataProvider(pageNum));
     return counter.when(
         data: (counter) {
           List<Widget> short = [];
@@ -33,13 +38,15 @@ class ShortPage extends ConsumerWidget {
                 likes: counter.data!.posts![i].reaction!.count.toString(),
                 profileImage:
                     counter.data!.posts![i].submission!.thumbnail.toString(),
-                username: "@"+counter.data!.posts![i].creator!.handle.toString(),
+                username:
+                    "@" + counter.data!.posts![i].creator!.handle.toString(),
               ),
             );
           }
 
           return Container(
             child: PageView(
+              controller: _controllerPage,
               scrollDirection: Axis.vertical,
               children: short,
             ),
@@ -52,7 +59,10 @@ class ShortPage extends ConsumerWidget {
               ),
             ),
         loading: () {
-          return Center(child: CircularProgressIndicator(color: Colors.white,));
+          return Center(
+              child: CircularProgressIndicator(
+            color: Colors.white,
+          ));
         });
   }
 }
