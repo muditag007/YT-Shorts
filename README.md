@@ -1,6 +1,6 @@
-# yt_shorts
+# YT-Shorts
 
-A new Flutter project.
+Flutter App Clone for Youtube Shorts using Video Player and Riverpod State Management.
 
 ## Getting Started
 
